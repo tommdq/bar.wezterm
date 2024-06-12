@@ -20,7 +20,7 @@ local config = {
   },
 }
 
-local username = os.getenv('USER') or os.getenv('LOGNAME') or os.getenv('USERNAME')
+local username = os.getenv "USER" or os.getenv "LOGNAME" or os.getenv "USERNAME"
 local home = (os.getenv "USERPROFILE" or os.getenv "HOME" or wez.home_dir or ""):gsub("\\", "/")
 local is_windows = package.config:sub(1, 1) == "\\"
 
@@ -157,7 +157,7 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
 
   if tab.is_active then
     fg = palette.ansi[4]
-    bg = palette.ansi[1]  -- Cambia el color de fondo de la pestaña activa
+    bg = palette.ansi[1] -- Cambia el color de fondo de la pestaña activa
   end
 
   local fillerwidth = 4 + index
@@ -167,7 +167,7 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
   end
 
   return {
-    { Background = { Color = bg } },  -- Establece el color de fondo
+    { Background = { Color = bg } }, -- Establece el color de fondo
     { Foreground = { Color = fg } },
     { Text = title },
   }
@@ -190,7 +190,7 @@ wez.on("update-status", function(window, pane)
 
   if window:leader_is_active() then
     stat_fg = palette.ansi[2]
-    stat = " leader "
+    stat = " LDR "
   end
 
   window:set_left_status(wez.format {
@@ -199,7 +199,8 @@ wez.on("update-status", function(window, pane)
     { Text = stat },
 
     { Foreground = { Color = palette.ansi[7] } },
-    { Text = config.pane_icon .. " " .. pane:get_title() .. " " },
+    -- { Text = config.pane_icon .. " " .. pane:get_title() .. " " },
+    { Text = config.pane_icon .. "pwsh" .. " " },
   })
 
   -- right status
