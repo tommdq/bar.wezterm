@@ -155,9 +155,10 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
   local fg = palette.ansi[6]
   local bg = palette.tab_bar.background
 
+  -- active tab color
   if tab.is_active then
     fg = palette.ansi[4]
-    bg = palette.ansi[1] -- Cambia el color de fondo de la pestaña activa
+    bg = palette.ansi[2]
   end
 
   local fillerwidth = 4 + index
