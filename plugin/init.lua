@@ -193,13 +193,16 @@ wez.on("update-status", function(window, pane)
     stat = " leader "
   end
 
+  -- Modificación aquí para remover " in wezterm"
+  local process_name = pane:get_foreground_process_name():gsub(" in wezterm", "")
+
   window:set_left_status(wez.format {
     { Background = { Color = palette.tab_bar.background } },
     { Foreground = { Color = stat_fg } },
     { Text = stat },
 
     { Foreground = { Color = palette.ansi[7] } },
-    { Text = config.pane_icon .. " " .. pane:get_title() .. " " },
+    { Text = config.pane_icon .. " " .. process_name .. " " },
   })
 
   -- right status
