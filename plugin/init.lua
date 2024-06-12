@@ -196,7 +196,7 @@ wez.on("update-status", function(window, pane)
   local palette = conf.resolved_palette
 
   -- left status
-  local stat = " " .. config.workspace_icon .. " " .. window:active_workspace() .. " "
+  local stat = " " .. config.workspace_icon .. "  " .. window:active_workspace() .. " "
   local stat_fg = palette.foreground
 
   if window:leader_is_active() then
@@ -204,13 +204,15 @@ wez.on("update-status", function(window, pane)
     stat = " leader "
   end
 
+  local cwd = get_cwd_hostname(pane, true)
+
   window:set_left_status(wez.format {
     { Background = { Color = palette.tab_bar.background } },
     { Foreground = { Color = stat_fg } },
     { Text = stat },
 
     { Foreground = { Color = palette.ansi[7] } },
-    { Text = config.pane_icon .. " " .. pane:get_title() .. " " },
+    { Text = config.cwd_icon .. " " .. cwd .. " " },
   })
 
   -- right status
